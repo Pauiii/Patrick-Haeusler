@@ -83,7 +83,7 @@ Snake.prototype.checkCollision = function (key, oldKey, counter) {
     }
     
     //... Alert wird nicht aufgerufen wenn zwei Elemente überlappen...
-    for (var i = 0; i < this.snakeArray.length; i++) {
+    for (var i = 0; i < this.snakeArray.length - 1; i++) {
         if (this.snakeArray[0] == this.snakeArray[i + 1]) {
             alert("End");
         }
