@@ -24,8 +24,6 @@ var game = (function () {
 
     // Draws the canvas
     function privateDraw() {
-        window.requestAnimationFrame(privateDraw);
-
         now = Date.now();
         delta = now - then;
 
@@ -33,22 +31,29 @@ var game = (function () {
             then = now - (delta % interval);
             console.log("Tick, now drawing with: " + FPS + "fps!");
             // draw and check collisions here...
-            
+
             //privateCanvas.setAttribute('tabindex', '0');
             //privateCanvas.focus();
             //privateCanvas.addEventListener("keydown", getKey, true);
 
-            document.addEventListener("keydown", getKey);
-            update();
+            document.addEventListener("keydown", privateGetKey);
+            privateUpdate();
         }
+        window.requestAnimationFrame(privateDraw);
     }
 
-    function getKey(event) {
+    function privateGetKey(event) {
         key = event.key;
     }
 
-    function update() {
-        oldKey = snake.update(key, apple, counter, oldKey);
+    function privateUpdate() {
+        counter.startScreen();
+        if (key == "w" || key == "ArrowUp" ||
+            key == "s" || key == "ArrowDown" ||
+            key == "a" || key == "ArrowLeft" ||
+            key == "d" || key == "ArrowRight") {
+            oldKey = snake.update(key, apple, counter, oldKey);
+        }
     }
 
     // Setzt den Canvas und dessen Context als Variablen
@@ -64,7 +69,7 @@ var game = (function () {
         snake = new Snake(RASTER_SIZE, GAME_WIDTH, GAME_HEIGHT, privateContext, privateCanvas);
         snake.createSnake();
         apple = new Apple(RASTER_SIZE, GAME_WIDTH, GAME_HEIGHT, privateContext);
-        counter = new Counter(GAME_WIDTH, GAME_HEIGHT, privateContext);
+        counter = new Counter(GAME_WIDTH, GAME_HEIGHT, privateContext, privateCanvas);
 
         window.requestAnimationFrame(privateDraw);
     }

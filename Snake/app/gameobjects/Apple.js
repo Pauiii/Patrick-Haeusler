@@ -27,8 +27,6 @@ Apple.prototype.update = function (key, sXPos, sYPos, aXPos, aYPos) {
         newSnakeElement = true;
     }
 
-    this.draw();
-
     return newSnakeElement;
 };
 
