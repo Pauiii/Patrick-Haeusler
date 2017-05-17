@@ -81,6 +81,13 @@ Snake.prototype.checkCollision = function (key, oldKey, counter) {
     if (this.snakeArray[0].XPos == 0 || this.snakeArray[0].YPos == 0 || this.snakeArray[0].XPos == this.canvasWidth || this.snakeArray[0].YPos >= this.canvasHeight) {
         alert("End");
     }
+    
+    //... Alert wird nicht aufgerufen wenn zwei Elemente überlappen...
+    for (var i = 0; i < this.snakeArray.length; i++) {
+        if (this.snakeArray[0] == this.snakeArray[i + 1]) {
+            alert("End");
+        }
+    }
 };
 
 Snake.prototype.updateElements = function (key, apple, counter, oldArray) {
