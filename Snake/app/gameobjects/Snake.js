@@ -90,7 +90,7 @@ Snake.prototype.checkDirectionChange = function (key, oldKey) {
 /*Checks if the snake collides with itself or the border.*/
 Snake.prototype.checkCollision = function (key, oldKey, counter) {
     /*Now checking collision with the border.*/
-    if (this.snakeArray[0].XPos == 0 || this.snakeArray[0].YPos == 0 || this.snakeArray[0].XPos == this.canvasWidth || this.snakeArray[0].YPos >= this.canvasHeight) {
+    if (this.snakeArray[0].XPos == -this.RASTER_SIZE || this.snakeArray[0].YPos == -this.RASTER_SIZE || this.snakeArray[0].XPos == this.canvasWidth || this.snakeArray[0].YPos == this.canvasHeight) {
         counter.endScreen();
     }
     
