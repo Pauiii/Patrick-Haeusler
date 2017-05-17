@@ -14,6 +14,9 @@ var SnakeElements = function (snakeLength, RASTER_SIZE, canvasWidth, canvasHeigh
     this.YPos = this.createYPos();
 };
 
+/*Creating the X and Y position of the first three
+ *SnakeElements.
+ */
 SnakeElements.prototype.createXPos = function () {
     if (this.snakeLength < 3) {
         return (this.canvasWidth / 2);

@@ -41,11 +41,13 @@ var game = (function () {
         }
         window.requestAnimationFrame(privateDraw);
     }
-
+    
+    /*Gets the pressed key*/
     function privateGetKey(event) {
         key = event.key;
     }
-
+    
+    /*Calls snake.update to change all the elements...*/
     function privateUpdate() {
         counter.startScreen();
         if (key == "w" || key == "ArrowUp" ||
