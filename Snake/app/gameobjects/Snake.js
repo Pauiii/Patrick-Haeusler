@@ -98,11 +98,12 @@ Snake.prototype.checkCollision = function (key, oldKey, counter) {
     if (this.snakeArray[0].XPos == -this.RASTER_SIZE || this.snakeArray[0].YPos == -this.RASTER_SIZE || this.snakeArray[0].XPos == this.canvasWidth || this.snakeArray[0].YPos == this.canvasHeight) {
         this.collision = true;
     }
-
+    var head=this.snakeArray[0];
     /*Now checking collision with itself.*/
     // Snake springt nicht in counter.endScreen() obwohl sich die SnakeElemente überlappen...
-    for (var i = 0; i < this.snakeArray.length - 1; i++) {
-        if (this.snakeArray[0] == this.snakeArray[i + 1]) {
+    for (var i = 1; i < this.snakeArray.length; i++) {
+        var testElement=this.snakeArray[i];
+        if (head.XPos==testElement.XPos && head.YPos == testElement.YPos) {
             this.collision = true;
         }
     }
