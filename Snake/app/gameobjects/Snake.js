@@ -1,5 +1,6 @@
 var Snake = function (RASTER_SIZE, canvasWidth, canvasHeight, context, canvas) {
     this.snakeArray = [];
+    this.collision = false;
 
     this.color = "yellow";
 
@@ -45,29 +46,33 @@ Snake.prototype.draw = function (apple, counter) {
  */
 Snake.prototype.update = function (key, apple, counter, oldKey) {
     this.context.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
-    
+
     /*Checks if the snake turns by 180 degrees, and refuses
      *that action.
      */
     key = this.checkDirectionChange(key, oldKey);
-    
+
     /*Checks if the snake is colliding with the border of the
      *canvas or is eating itself.
      */
     this.checkCollision(key, oldKey, counter);
 
-    var oldArray = [];
-    
-    /*Creates a deap copy of this.snakeArray.*/
-    for (var i = 0; i < this.snakeArray.length; i++) {
-        oldArray[i] = jQuery.extend(true, {}, this.snakeArray[i]);
-    }
-    
-    this.updateElements(key, apple, counter, oldArray);
-    
-    this.draw(apple, counter);
+    if (this.collision == true) {
+        return this.collision;
+    } else {
+        var oldArray = [];
 
-    return key;
+        /*Creates a deap copy of this.snakeArray.*/
+        for (var i = 0; i < this.snakeArray.length; i++) {
+            oldArray[i] = jQuery.extend(true, {}, this.snakeArray[i]);
+        }
+
+        this.updateElements(key, apple, counter, oldArray);
+
+        this.draw(apple, counter);
+
+        return key;
+    }
 };
 
 /*Stops 180 degree turns of the snake*/
@@ -91,14 +96,14 @@ Snake.prototype.checkDirectionChange = function (key, oldKey) {
 Snake.prototype.checkCollision = function (key, oldKey, counter) {
     /*Now checking collision with the border.*/
     if (this.snakeArray[0].XPos == -this.RASTER_SIZE || this.snakeArray[0].YPos == -this.RASTER_SIZE || this.snakeArray[0].XPos == this.canvasWidth || this.snakeArray[0].YPos == this.canvasHeight) {
-        counter.endScreen();
+        this.collision = true;
     }
-    
+
     /*Now checking collision with itself.*/
     // Snake springt nicht in counter.endScreen() obwohl sich die SnakeElemente überlappen...
     for (var i = 0; i < this.snakeArray.length - 1; i++) {
         if (this.snakeArray[0] == this.snakeArray[i + 1]) {
-            counter.endScreen();
+            this.collision = true;
         }
     }
 };
@@ -119,7 +124,7 @@ Snake.prototype.updateElements = function (key, apple, counter, oldArray) {
     } else if (key == "d" || key == "ArrowRight") {
         this.snakeArray[0].XPos = oldArray[0].XPos + this.RASTER_SIZE;
     }
-    
+
     /*Now setting all the other SnakeElements of
      *this.snakeArray, except this.snakeArray[0] at the value
      *of the old this.snakeArray, called oldArray.
@@ -127,10 +132,10 @@ Snake.prototype.updateElements = function (key, apple, counter, oldArray) {
     for (var j = 0; j < this.snakeArray.length - 1; j++) {
         this.snakeArray[j + 1] = oldArray[j];
     }
-    
+
     /*Checks if the apple is eaten by the snake.*/
     var newSnakeElement = apple.update(key, this.snakeArray[0].XPos, this.snakeArray[0].YPos, apple.xPos, apple.yPos);
-    
+
     /*If the apple is eaten an new SnakeElement will be added
      *to this.snakeArray and the score will be increased by 9.
      */

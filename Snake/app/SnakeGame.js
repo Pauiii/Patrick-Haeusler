@@ -32,21 +32,32 @@ var game = (function () {
             console.log("Tick, now drawing with: " + FPS + "fps!");
             // draw and check collisions here...
 
+            if (oldKey == true) {
+                counter.endScreen();
+                document.addEventListener("keydown", privateGetESC);
+            } else {
+                document.addEventListener("keydown", privateGetKey);
+                privateUpdate();
+            }
+
             //privateCanvas.setAttribute('tabindex', '0');
             //privateCanvas.focus();
             //privateCanvas.addEventListener("keydown", getKey, true);
-
-            document.addEventListener("keydown", privateGetKey);
-            privateUpdate();
         }
         window.requestAnimationFrame(privateDraw);
     }
-    
+
+    function privateGetESC(event) {
+        if (event.keyCode == 27) {
+            location.reload();
+        }
+    }
+
     /*Gets the pressed key*/
     function privateGetKey(event) {
         key = event.key;
     }
-    
+
     /*Calls snake.update to change all the elements...*/
     function privateUpdate() {
         counter.startScreen();

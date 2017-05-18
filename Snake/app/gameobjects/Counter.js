@@ -1,5 +1,6 @@
 var Counter = function (canvasWidth, canvasHeigth, context) {
     this.score = 0;
+    this.collsionBoolean = false;
 
     this.canvasWidth = canvasWidth;
     this.canvasHeight = canvasHeigth;
@@ -44,16 +45,13 @@ Counter.prototype.startScreen = function () {
 
 /*Draws the end screen on the canvas.*/
 Counter.prototype.endScreen = function () {
-    this.context.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+    //this.context.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
     var instruction = "If you want to try again, please press ESC.";
     var score = "Score: " + this.score;
     this.context.fillStyle = this.color;
     this.context.font = this.font;
     this.context.fillText(score, this.XPos, this.YPos);
     this.context.fillText(instruction, 20, 150);
-    
-    //Sollte auf ESC Seite neuladen...
-    location.reload();
 };
 
 /*
