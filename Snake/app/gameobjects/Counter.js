@@ -87,7 +87,7 @@ Counter.prototype.endScreen = function (level, meteorCount) {
 
 /*Draws the Text for amount of meteors*/
 Counter.prototype.meteorScreen = function (meteorCount) {
-    var meteors = "Meteors: " + meteorCount;
+    var meteors = "Meteorites: " + meteorCount;
 
     var meteorsWidth = (this.canvasWidth) - (this.context.measureText(meteors).width + 10);
 
