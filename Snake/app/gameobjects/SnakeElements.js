@@ -8,7 +8,6 @@ var SnakeElements = function (snakeLength, RASTER_SIZE, canvasWidth, canvasHeigh
     this.canvasHeight = canvasHeight;
 
     this.color = "yellow";
-    this.speed = 3;
 
     this.XPos = this.createXPos();
     this.YPos = this.createYPos();

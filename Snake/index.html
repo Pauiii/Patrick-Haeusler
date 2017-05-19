@@ -5,13 +5,8 @@
     <meta charset="UTF-8" />
     <title>Snake</title>
     <link rel="stylesheet" type="text/css" href="css/snake.css">
-</head>
 
-<body>
-    <h1>Snake</h1>
-    <p>
-        <canvas id="canvas" width="300" height="300"></canvas>
-    </p>
+    <script src="app/gameobjects/Meteor.js"></script>
     <script src="app/gameobjects/Snake.js"></script>
     <script src="app/gameobjects/SnakeElements.js"></script>
     <script src="app/gameobjects/Apple.js"></script>
@@ -19,7 +14,28 @@
     <script src="app/SnakeGame.js"></script>
     <script src="app/Starter.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
 
+<body>
+    <section>
+        <h1>CosmicSnake</h1>
+        <article id="animation">
+            <canvas id="canvas" width="400" height="400"></canvas>
+        </article>
+        <article id="instruction">
+            <h2>
+                Instructions
+            </h2>
+            <ul>
+                <li>The game starts if you press 'w', 'a', 's', 'd' or any of the arrow keys.</li>
+                <li>The snake can be controlled with the same keys you start the game.</li>
+                <li>You can pause the game by pressing 'p' or 'pause'.</li>
+                <li>It is impossible to turn the snake by 180 degrees.</li>
+                <li>Every time the snake eats an apple the score will be increased by 9 points.</li>
+                <li>If the snake tries to eat an meteor, or itself or hits the border of the canvas the game will end.</li>
+            </ul>
+        </article>
+    </section>
 </body>
 
 </html>

@@ -1,15 +1,37 @@
 @font-face {
-	font-family: Roboto Condensed Light;
-	src: url("RobotoCondensed-Light.ttf");
-	src: url("./fonts/RobotoCondensed-Light.ttf");
+    font-family: Roboto Condensed Light;
+    src: url("RobotoCondensed-Light.ttf");
+    src: url("./fonts/RobotoCondensed-Light.ttf");
 }
 
 #canvas {
-	border: 1px solid white;
+    border: 1px solid white;
 }
 
 body {
-	background-color: black;
-	color: white;
-	font-family: 'Roboto Condensed Light';
+    background-color: black;
+    color: white;
+    font-family: 'Roboto Condensed Light';
+}
+
+h1 {
+    text-align: center;
+}
+
+section {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+#animation {
+    float: left;
+    margin: 2.5%;
+    text-align: center;
+}
+
+#instruction {
+    float: left;
+    margin: 2.5%;
+    text-align: left
 }
