@@ -45,7 +45,7 @@ Counter.prototype.update = function () {
 Counter.prototype.startScreen = function (level, meteorCount) {
     this.context.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
 
-    var score = "Score: 0";
+    var score = "Score: " + this.score;
     var instruction = "Please, press an arrow to start the game.";
 
     var scoreWidth = (this.canvasWidth / 2) - (this.context.measureText(score).width / 2);
